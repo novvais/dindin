@@ -1,35 +1,24 @@
 const express = require("express")
 const verificarUsuarioLogado = require("../middleware/autenticacao")
-const { listarTransacoesDoUsuario } = require("../controllers/listarTransaçõesDoUsuario")
-const { cadastrarTransacao } = require("../controllers/cadastrarTransacao")
-const { detalharTransacao } = require("../controllers/detalharTransacao")
-const { atualizarTransacao } = require("../controllers/atualizarTransacao")
-const { excluirTransacao } = require("../controllers/excluirTransacao")
-const { obterExtrato } = require("../controllers/extratoDeTransacoes")
+const transacoes = require("../controllers/transacoes")
 
-const { 
-    cadastroUsuario, 
-    login,
-    detalharUsuario,
-    atualizarUsuario,
-    listarCategorias
-} = require("../controllers/usuarios")
+const usuarios = require("../controllers/usuarios")
 
 const rota = express()
 
-rota.post("/usuario", cadastroUsuario)
-rota.post("/login", login)
+rota.post("/usuario", usuarios.cadastroUsuario)
+rota.post("/login", usuarios.login)
 
 rota.use(verificarUsuarioLogado)
 
-rota.get("/usuario", detalharUsuario)
-rota.put("/usuario", atualizarUsuario)
-rota.get("/categorias", listarCategorias)
-rota.get("/transacao/extrato", obterExtrato)
-rota.get("/transacao", listarTransacoesDoUsuario)
-rota.post("/transacao", cadastrarTransacao)
-rota.get("/transacao/:id", detalharTransacao)
-rota.put("/transacao/:id", atualizarTransacao)
-rota.delete("/transacao/:id", excluirTransacao)
+rota.get("/usuario", usuarios.detalharUsuario)
+rota.put("/usuario", usuarios.atualizarUsuario)
+rota.get("/categorias", usuarios.listarCategorias)
+rota.get("/transacao/extrato", transacoes.obterExtrato)
+rota.get("/transacao", transacoes.listarTransacoesDoUsuario)
+rota.post("/transacao", transacoes.cadastrarTransacao)
+rota.get("/transacao/:id", transacoes.detalharTransacao)
+rota.put("/transacao/:id", transacoes.atualizarTransacao)
+rota.delete("/transacao/:id", transacoes.excluirTransacao)
 
 module.exports = rota
