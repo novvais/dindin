@@ -14,11 +14,12 @@ rota.use(verificarUsuarioLogado)
 rota.get("/usuario", usuarios.detalharUsuario)
 rota.put("/usuario", usuarios.atualizarUsuario)
 rota.get("/categorias", usuarios.listarCategorias)
-rota.get("/transacao/extrato", transacoes.obterExtrato)
+
 rota.get("/transacao", transacoes.listarTransacoesDoUsuario)
-rota.post("/transacao", transacoes.cadastrarTransacao)
 rota.get("/transacao/:id", transacoes.detalharTransacao)
+rota.post("/transacao", transacoes.cadastrarTransacao)
 rota.put("/transacao/:id", transacoes.atualizarTransacao)
 rota.delete("/transacao/:id", transacoes.excluirTransacao)
+rota.get("/transacao/extrato", transacoes.obterExtrato)
 
 module.exports = rota
