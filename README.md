@@ -1,5 +1,4 @@
 # Dindin
----
 
 Seja bem vindo(a)!
 
