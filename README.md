@@ -32,6 +32,9 @@ Seja bem vindo(a)!
    * Baixe e instale o Insomnia acessando o link: https://insomnia.rest/download
    * Crie uma conta e se conecte no aplicativo
 
+6. Para gerenciar o Database utilize o Beekeeper Studio
+   * Baixe e instale o Beekeeper acessando o link: https://www.beekeeperstudio.io/get
+
 </details>
 
 <details>
@@ -95,6 +98,11 @@ Seja bem vindo(a)!
 
 <details>
 <summary>Explicando as Rotas</summary>
+
+**Para o código funcionar você precisa adicionar uma senha entre '' da sua escolha no `.env`**
+
+<img src="./src/assets/env_jwt.png"/>
+
 
 1. Rota **`POST` "cadastroUsuario"** - *Obrigatório o uso do body request*
    * Adicione o dominio e o caminho da API:
@@ -228,6 +236,86 @@ Seja bem vindo(a)!
 
 </details>
 
+<details>
+<summary><b>Database</b></summary>
+
+<details>
+<summary>PostgreSQL</summary>
+
+Para poder usar o Database você precisa baixar e instalar o PostgreSQL, foi o gerenciador de Database utilizado no código.
+
+1. Baixe e instale o PostgreSQL
+   * Acesse o link e baixe a última versão disponível: https://www.enterprisedb.com/downloads/postgres-postgresql-downloads
+
+2. Execute o arquivo baixado
+   <img src="./src/assets/download_postgre.png"/>
+
+3. Em seguida vai ser aberta uma aba para a instalação, clique em "Next"
+   <img src="./src/assets/passo1_downloado_post.png"/>
+
+4. Escolha onde vai ser instalado o Postgre e em seguida clique em "Next"
+   <img src="./src/assets/passo2_downloado_post.png"/>
+
+5. Selecione somente a primeira e a última opção e em seguida clique em "Next"
+   <img src="./src/assets/passo3_downloado_post.png"/>
+
+6. Escolha a paste onde vai ser armazenado o Database e em seguida clique em "Next"
+   <img src="./src/assets/passo4_downloado_post.png"/>
+
+7. Cria um senha para acessar o Database
+   * Essa senha será usada para acessar o Beekeeper, grave essa senha
+   * O usuário para acessar será o padrão "postgres"
+   * Em seguida clique em "Next"
+   <img src="./src/assets/passo5_downloado_post.png"/>
+   
+8. A porta usada será a padrão então somente clique em "Next"
+   <img src="./src/assets/passo6_downloado_post.png"/>
+
+9. Escolha a lingua
+   <img src="./src/assets/passo7_downloado_post.png"/>
+
+10. Agora basta clicar em "Next" até finalizar a instalação.
+
+</details>
+
+<details>
+<summary>Como usar o Beekeeper</summary>
+
+1. Após a instalação abra o Beekeeper para iniciar
+   <img src="./src/assets/beekeeper_inicio.png"/>
+
+2. Escolha o Database que vai ser usado, nesse caso vai ser o "PostgreSQL"
+   <img src="./src/assets/beekeeper_postgres.png"/>
+
+3. Insira seu nome de usuário e a senha criada na instalação do "PostgreSQL" e clique em "Connect"
+   * O nome de usuário vai ser o padrão "postgres"
+   <img src="./src/assets/beekeeper_password.png"/>
+   
+-  Para criar o Database utilize o código que está no arquivo `dump.sql`
+   -  Copie e cole o código na aba `query` do Beekeeper, execute cada bloco individualmente
+   <img src="./src/assets/query.beekeeper.png"/>
+
+**Está quase pronto, agora basta conectar a API com o Database usando o `dotenv`.**
+
+<details>
+<summary>Conectando a API com o Database</summary>
+
+1. Crie um arquivo chamado `.env` e use as informações do arquivo `.env.example`
+   <img src="./src/assets/env_database.png"/>
+
+2. Adicione do Beekeeper no `.env`
+   <img src="./src/assets/connect.env.png/>
+
+* Exemplo
+   * Em `DB_DATABASE` você tem que inserir o nome do database criado no Beekeeper que no caso se chama "dindin"
+   <img src="./src/assets/example.env.png"/>
+</details>
+
+</details>
+
+
+</details>
+
 ---
 
 **Exemplo de conteúdo do Body Request:**
@@ -237,12 +325,12 @@ Seja bem vindo(a)!
 
       ```javascript  
       {
-	   "nome": "Foo Ba",
-      "email": "foo@bar.com",
-      "cpf": "00011122233",
-      "data_nascimento": "15/03/2001",
-      "telefone": "11999998888",
-      "senha": "1234"
+	      "nome": "Foo Ba",
+          "email": "foo@bar.com",
+          "cpf": "00011122233",
+          "data_nascimento": "15/03/2001",
+          "telefone": "11999998888",
+          "senha": "1234"
       }   
 
 **Exemplo de saída:** 
